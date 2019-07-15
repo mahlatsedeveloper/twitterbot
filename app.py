@@ -39,25 +39,31 @@ class TwitterBot:
                 bot.get('https://twitter.com' + link)
                 try:
                     follow_btn = bot.find_element_by_class_name('button-text.follow-text')
-                    like_btn = bot.find_element_by_class_name('HeartAnimation')
                     follow_btn.click()
-                    like_btn.click()
-                    
-                    """
-                    if follow_btn.text != 'Following':
-                        follow_btn.click()
-                        like_btn.click()
-                    else:
-                        like_btn.click()
-                    """
-
                     time.sleep(3)
                 except Exception as ex:
                     time.sleep(10)
     
 
     def like(self):
-        pass
+        bot = self.bot
+        bot.get('https://twitter.com/search?q='+hashtag+'&src=typd')
+        time.sleep(3)
+
+        for i in range(1, 3):
+            bot.execute_script('window.scrollTo(0, document.body.scrollHeight)')
+            time.sleep(2)
+            tweets = bot.find_elements_by_class_name('tweet')
+            links = [elem.get_attribute('data-permalink-path') for elem in tweets]
+
+            for link in links:
+                bot.get('https://twitter.com' + link)
+                try:
+                    like_btn = bot.find_element_by_class_name('HeartAnimation')
+                    like_btn.click()
+                    time.sleep(3)
+                except Exception as ex:
+                    time.sleep(10)
     
 
     def retweet(self):
@@ -70,4 +76,4 @@ class TwitterBot:
 
 bot = TwitterBot('email', 'password')
 bot.login()
-bot.follow('MetroFMBreakFast')
+bot.follow('JacobZuma')
