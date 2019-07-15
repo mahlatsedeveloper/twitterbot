@@ -22,18 +22,7 @@ class TwitterBot:
         button = bot.find_element_by_class_name('submit')
         button.click()
         time.sleep(5)
-
-
-    #switch to legacy twitter
-    def switch_twitter(self):
-        bot = self.bot
-        time.sleep(5)
-        button = bot.find_element_by_xpath("//div[@aria-label='More menu items']")
-        button.click()
-        time.sleep(5)
-        switch = bot.find_element_by_xpath("//a[@href='/i/optout']")
-        switch.click()
-
+        
 
     def follow(self, hashtag):
         bot = self.bot
