@@ -10,7 +10,6 @@ class TwitterBot:
         #create an instance of bot
         self.bot = webdriver.Firefox()
 
-
     def login(self):
         bot = self.bot
         bot.get('https://twitter.com/')
@@ -21,8 +20,10 @@ class TwitterBot:
         
         button = bot.find_element_by_class_name('submit')
         button.click()
-        time.sleep(5)
+        time.sleep(3)
         
+    def switch_twitter(self):
+        pass
 
     def follow(self, hashtag):
         bot = self.bot
@@ -43,9 +44,8 @@ class TwitterBot:
                     time.sleep(3)
                 except Exception as ex:
                     time.sleep(10)
-    
 
-    def like(self):
+    def like(self, hashtag):
         bot = self.bot
         bot.get('https://twitter.com/search?q='+hashtag+'&src=typd')
         time.sleep(3)
@@ -74,6 +74,6 @@ class TwitterBot:
         pass
 
 
-bot = TwitterBot('email', 'password')
+bot = TwitterBot('', '')
 bot.login()
-bot.follow('JacobZuma')
+bot.follow('Khuzwayo')
